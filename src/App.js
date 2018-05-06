@@ -32,10 +32,17 @@ class App extends Component {
   }
 
   render() {
+    const style = {
+      backgroundColor: 'white',
+      padding: '10px',
+      border: '1px solid #ddd',
+      cursor: 'pointer'
+    }
+
     return (
       <div className="App">
         <h1>Exceptions Dashboard</h1>
-        <button onClick={this.switchQuantityHandler.bind(this, 20)}>Reload</button>
+        <button style={style} onClick={this.switchQuantityHandler.bind(this, 20)}>Reload</button>
         <Error 
           type = {this.state.errors[0].type}
           quantity = {this.state.errors[0].quantity}
