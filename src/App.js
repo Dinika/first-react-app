@@ -10,11 +10,22 @@ class App extends Component {
       {type: 'PID Type', quantity: 2},
     ]
   }
+
+  switchNameHandler = () => {
+    this.setState({
+      errors: [
+        {type: 'Validation', quantity: 34},
+        {type: 'DoJSON', quantity: 12},
+        {type: 'PID Type', quantity: 2},
+      ]
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <h1>Exceptions Dashboard</h1>
-        <button>Reload</button>
+        <button onClick={this.switchNameHandler}>Reload</button>
         <Error type = {this.state.errors[0].type} quantity = {this.state.errors[0].quantity}/>
         <Error type = {this.state.errors[1].type} quantity = {this.state.errors[1].quantity}/>
         <Error type = {this.state.errors[2].type} quantity = {this.state.errors[2].quantity}> Data still to be added </Error>
