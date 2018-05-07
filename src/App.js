@@ -39,6 +39,13 @@ class App extends Component {
     });
   }
 
+  deleteErrorHandler = (errorIndex) => {
+    //const errors = this.state.errors;
+    const errors = [...this.state.errors];
+    errors.splice(errorIndex, 1);
+    this.setState({errors: errors});
+  }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -47,24 +54,25 @@ class App extends Component {
       cursor: 'pointer'
     }
 
+    let persons = null;
+
+    if(this.state.showErrors) {
+      persons = (
+        <div>
+          {this.state.errors.map( (error, index) => {
+            return <Error type = {error.type}
+                  quantity = {error.quantity}
+                  click = {this.deleteErrorHandler.bind(this, index)}/>
+          })}
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <h1>Exceptions Dashboard</h1>
-        <button style={style} onClick={this.toggleErrorsHandler}>Reload</button>
-        { this.state.showErrors === true ? 
-          <div>
-            <Error 
-              type = {this.state.errors[0].type}
-              quantity = {this.state.errors[0].quantity}
-              click = {this.switchQuantityHandler.bind(this, 10)}/>
-            <Error
-              type = {this.state.errors[1].type} 
-              quantity = {this.state.errors[1].quantity}
-              change= {this.typeChangeHandler}/>
-            <Error 
-              type = {this.state.errors[2].type} 
-              quantity = {this.state.errors[2].quantity}> Data still to be added </Error>
-          </div> : null }
+        <button style={style} onClick={this.toggleErrorsHandler}>Show Erros</button>
+        {persons} 
       </div>
     );
   }
