@@ -64,7 +64,7 @@ class App extends Component {
       backgroundColor: 'white',
       padding: '10px',
       border: '1px solid #ddd',
-      cursor: 'pointer'
+      cursor: 'pointer',
     }
 
     let exceptionsMetadata = null;
@@ -99,9 +99,8 @@ class App extends Component {
         <h1>Exceptions Dashboard</h1>
         <p className={classes.join(' ')}>Click the buttons to see metadata</p>
         <button style={style} onClick={this.toggleErrorsHandler}>Show Erros</button>
-        <button style={style} onClick={this.updateErrorCounterHandler}>Console errors</button>
+        <button onClick={this.updateErrorCounterHandler}>Console errors</button>
         {exceptionsMetadata}
-        
       </div>
     );
   }
