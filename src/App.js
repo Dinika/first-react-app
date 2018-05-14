@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Error from './Error/Error';
-import './App.css';
+import styles from './App.css';
 import data from './report-errors.json';
 
 class App extends Component {
@@ -71,10 +71,10 @@ class App extends Component {
 
     const classes = [];
     if(this.state.errors.length <= 1) {
-      classes.push('red');
+      classes.push(styles.red);
     }
     if(this.state.errors.length <= 2) {
-      classes.push('bold');
+      classes.push(styles.bold);
     }
 
     if(this.state.showErrors) {
@@ -95,7 +95,7 @@ class App extends Component {
 
 
     return (
-      <div className="App">
+      <div className={styles.App}>
         <h1>Exceptions Dashboard</h1>
         <p className={classes.join(' ')}>Click the buttons to see metadata</p>
         <button style={style} onClick={this.toggleErrorsHandler}>Show Erros</button>
