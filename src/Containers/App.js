@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Error from './Error/Error';
 import styles from './App.css';
 import data from './report-errors.json';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
   state = {
@@ -60,14 +61,9 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'white',
-      padding: '10px',
-      border: '1px solid #ddd',
-      cursor: 'pointer',
-    }
 
     let exceptionsMetadata = null;
+    let buttonClass = '';
 
     const classes = [];
     if(this.state.errors.length <= 1) {
@@ -81,16 +77,17 @@ class App extends Component {
       exceptionsMetadata = (
         <div>
           {this.state.errors.map( (error, index) => {
-            return <Error 
-                  key = {error.id}
-                  type = {error.type}
-                  quantity = {error.quantity}
-                  click = {this.deleteErrorHandler.bind(this, index)}
-                  change = {(event) => {this.typeChangeHandler(event, error.id)}}/>
+            return <ErrorBoundary key = {error.id}>
+                    <Error 
+                      type = {error.type}
+                      quantity = {error.quantity}
+                      click = {this.deleteErrorHandler.bind(this, index)}
+                      change = {(event) => {this.typeChangeHandler(event, error.id)}}/>
+                    </ErrorBoundary>
           })}
         </div>
       );
-      style.backgroundColor = 'red';
+      buttonClass = styles.red;
     }
 
 
@@ -98,7 +95,7 @@ class App extends Component {
       <div className={styles.App}>
         <h1>Exceptions Dashboard</h1>
         <p className={classes.join(' ')}>Click the buttons to see metadata</p>
-        <button style={style} onClick={this.toggleErrorsHandler}>Show Erros</button>
+        <button className={buttonClass} onClick={this.toggleErrorsHandler}>Show Erros</button>
         <button onClick={this.updateErrorCounterHandler}>Console errors</button>
         {exceptionsMetadata}
       </div>

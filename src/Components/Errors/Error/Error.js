@@ -8,9 +8,7 @@ const error = (props) => {
             <p onClick={props.click}>Total number of {props.type} errors {props.quantity} </p>
             <p>{props.children}</p>
             <input type="text" onChange={props.change} value={props.type}/>
-        </div>
-
-    )
+        </div>)
 }
 
 export default error;

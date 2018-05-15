@@ -5,4 +5,13 @@
     border: 1px solid #eee;
     box-shadow: 0 2px 3px #ccc;
     margin-top: 20px;
+    background-color: pink
 }
+
+@media (min-width: 500px) {
+    .Error {
+        background-color: black;
+        color: white;
+    }
+}
+
