@@ -7,16 +7,29 @@ import ErrorBoundary from '../Components/ErrorBoundary/ErrorBoundary';
 import Cockpit from '../Components/Cockpit/Cockpit';
 
 class App extends Component {
-  state = {
-    exceptions: data,
-    errors: [
-      {id: '123', type: 'Validation', quantity: 22},
-      {id: '345', type: 'DoJSON', quantity: 42},
-      {id: '725', type: 'PID Type', quantity: 2},
-    ],
-    typeOfErrors: [],
-    collections: [],
-    showErrors : false,
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      exceptions: data,
+      errors: [
+        {id: '123', type: 'Validation', quantity: 22},
+        {id: '345', type: 'DoJSON', quantity: 42},
+        {id: '725', type: 'PID Type', quantity: 2},
+      ],
+      typeOfErrors: [],
+      collections: [],
+      showErrors : false,
+    }
+    console.log('[App.js] constructor', props)
+  }
+
+  componentWillMount() {
+    console.log('[App.js] componentWillMount');
+  }
+
+  componentDidMount() {
+    console.log('[App.js] componentDidMount');
   }
 
   switchQuantityHandler = (newQuanity) => {
@@ -63,7 +76,7 @@ class App extends Component {
   }
 
   render() {
-
+    console.log('[App.js] render');
     let exceptionsMetadata = null;
 
     if(this.state.showErrors) {
