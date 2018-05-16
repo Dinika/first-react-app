@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import Errors from '../Components/Errors/Errors';
 import Error from '../Components/Errors/Error/Error';
 import styles from './App.css';
 import data from '../report-errors.json';
 import ErrorBoundary from '../Components/ErrorBoundary/ErrorBoundary';
+import Cockpit from '../Components/Cockpit/Cockpit';
 
 class App extends Component {
   state = {
@@ -63,40 +65,24 @@ class App extends Component {
   render() {
 
     let exceptionsMetadata = null;
-    let buttonClass = '';
-
-    const classes = [];
-    if(this.state.errors.length <= 1) {
-      classes.push(styles.red);
-    }
-    if(this.state.errors.length <= 2) {
-      classes.push(styles.bold);
-    }
 
     if(this.state.showErrors) {
       exceptionsMetadata = (
-        <div>
-          {this.state.errors.map( (error, index) => {
-            return <ErrorBoundary key = {error.id}>
-                    <Error 
-                      type = {error.type}
-                      quantity = {error.quantity}
-                      click = {this.deleteErrorHandler.bind(this, index)}
-                      change = {(event) => {this.typeChangeHandler(event, error.id)}}/>
-                    </ErrorBoundary>
-          })}
-        </div>
+          <Errors 
+            errors={this.state.errors}
+            clicked={this.deleteErrorHandler}
+            changed={this.typeChangeHandler}/>
       );
-      buttonClass = styles.red;
     }
 
 
     return (
       <div className={styles.App}>
-        <h1>Exceptions Dashboard</h1>
-        <p className={classes.join(' ')}>Click the buttons to see metadata</p>
-        <button className={buttonClass} onClick={this.toggleErrorsHandler}>Show Erros</button>
-        <button onClick={this.updateErrorCounterHandler}>Console errors</button>
+        <Cockpit 
+          showErrors={this.state.showErrors}
+          errors={this.state.errors}
+          updated={this.updateErrorCounterHandler}
+          clicked={this.toggleErrorsHandler}/>
         {exceptionsMetadata}
       </div>
     );
