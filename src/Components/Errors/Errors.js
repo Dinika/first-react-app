@@ -13,6 +13,19 @@ class Errors extends Component {
   componentDidMount() {
     console.log('Errors: componentDidMount')
   }
+  componentWillReceiveProps(updatedProps) {
+    console.log('Errors: componentWillReceiveProps', updatedProps)
+  }
+  shouldComponentUpdate(updatedProps, updatedState) {
+    console.log('Errors: shouldComponentUpdate', updatedProps, updatedState)
+    return true
+  }
+  componentWillUpdate(nextProps, nextState) {
+    console.log('Errors: componentWillUpdate', nextProps, nextState)
+  }
+  componentDidUpdate() {
+    console.log('Errors: compoentDidUpdate')
+  }
   render() {
     console.log('Errors: render')
     return (this.props.errors.map( (error, index) => {
