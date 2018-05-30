@@ -1,4 +1,5 @@
 import React , { Component } from 'react';
+import PropTypes from 'prop-types';
 import styles from './Error.css';
 import Aux from '../../../Hoc/aux';
 import withClasses from '../../../Hoc/withClasses';
@@ -27,4 +28,10 @@ class Error extends Component {
     }
 }
 
+Error.propTypes = {
+    click: PropTypes.func,
+    change: PropTypes.func,
+    type: PropTypes.string,
+    quantity: PropTypes.number,
+}
 export default withClasses(Error);

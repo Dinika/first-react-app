@@ -22,6 +22,7 @@ class App extends PureComponent {
       typeOfErrors: [],
       collections: [],
       showErrors : false,
+      toggleButtonClicked: 0
     }
     console.log('[App.js] constructor', props)
   }
@@ -58,8 +59,11 @@ class App extends PureComponent {
 
   toggleErrorsHandler = () => {
     const doesShow = this.state.showErrors;
-    this.setState({
-      showErrors: !doesShow
+    this.setState((prevState, props) => {
+      return({
+        showErrors: !doesShow,
+        toggleButtonClicked: prevState.toggleButtonClicked + 1,
+      })
     });
   }
 
