@@ -1,14 +1,13 @@
 import React from 'react';
 import styles from './Cockpit.css';
+import Aux from '../../Hoc/aux';
 
 const cockpit = (props) => {
   const classes = [];
-  let buttonClass = '';
+  let buttonClass = styles.Button;
   if(props.showPerson) {
-    buttonClass = styles.red;
-  } 
-
-  buttonClass = styles.red;
+    buttonClass = [styles.Button, styles.red].join(' ');
+  }
 
   if(props.errors.length <= 1) {
     classes.push(styles.red);
@@ -18,12 +17,12 @@ const cockpit = (props) => {
   }
 
   return(
-    <div className={styles.Cockpit}>
+    <Aux>
       <h1>Exceptions Dashboard</h1>
         <p className={classes.join(' ')}>Click the buttons to see metadata</p>
         <button className={buttonClass} onClick={props.clicked}>Show Erros</button>
-        <button onClick={props.updated}>Console errors</button>
-    </div>
+        <button className={buttonClass} onClick={props.updated}>Console errors</button>
+    </Aux>
   )
 }
 

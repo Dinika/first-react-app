@@ -6,28 +6,34 @@
   font-weight: bold;
 }
 
-.Cockpit button {
+.Cockpit {
+  width: 60%;
+  margin: auto;
+  text-align: center;
+}
+
+.Button {
   background-color: white;
   padding: 10px;
   border: 1px solid #ddd;
   cursor: pointer;
 }
 
-.Cockpit button:hover {
+.Button:hover {
   background-color: pink;
 }
 
-.Cockpit button.red {
+.Button.red {
   background-color: red;
   color: white;
 }
 
-.Cockpit button.red:hover {
+.Button.red:hover {
   background-color: plum;
 }
 
 @media (min-width: 500px) {
-  .Cockpit button {
+  .Button {
     background-color: black;
     color: white;
   }

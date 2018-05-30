@@ -1,8 +1,8 @@
-import React , { Component } from 'react';
+import React , { PureComponent } from 'react';
 import Error from './Error/Error';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
-class Errors extends Component {
+class Errors extends PureComponent {
   constructor(props) {
     super(props)
     console.log('Errors: constructor')
@@ -16,15 +16,15 @@ class Errors extends Component {
   componentWillReceiveProps(updatedProps) {
     console.log('Errors: componentWillReceiveProps', updatedProps)
   }
-  shouldComponentUpdate(updatedProps, updatedState) {
-    console.log('Errors: shouldComponentUpdate', updatedProps, updatedState)
-    return true
-  }
+  // shouldComponentUpdate(updatedProps, updatedState) {
+  //   console.log('Errors: shouldComponentUpdate', updatedProps, updatedState)
+  //   return true
+  // }
   componentWillUpdate(nextProps, nextState) {
     console.log('Errors: componentWillUpdate', nextProps, nextState)
   }
   componentDidUpdate() {
-    console.log('Errors: compoentDidUpdate')
+    console.log('Errors: componentDidUpdate')
   }
   render() {
     console.log('Errors: render')

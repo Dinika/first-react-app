@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Errors from '../Components/Errors/Errors';
 import Error from '../Components/Errors/Error/Error';
 import styles from './App.css';
 import data from '../report-errors.json';
 import ErrorBoundary from '../Components/ErrorBoundary/ErrorBoundary';
 import Cockpit from '../Components/Cockpit/Cockpit';
+import withClasses from '../Hoc/withClasses';
+import Aux from '../Hoc/aux';
 
-class App extends Component {
+class App extends PureComponent {
 
   constructor(props) {
     super(props);
@@ -90,16 +92,16 @@ class App extends Component {
 
 
     return (
-      <div className={styles.App}>
+      <Aux>
         <Cockpit 
           showErrors={this.state.showErrors}
           errors={this.state.errors}
           updated={this.updateErrorCounterHandler}
           clicked={this.toggleErrorsHandler}/>
         {exceptionsMetadata}
-      </div>
+      </Aux>
     );
   }
 }
 
-export default App;
+export default withClasses(App, styles.App);
