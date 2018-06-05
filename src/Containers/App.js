@@ -8,7 +8,14 @@ import Cockpit from '../Components/Cockpit/Cockpit';
 import withClasses from '../Hoc/withClasses';
 import Aux from '../Hoc/aux';
 
+export const AuthContext = React.createContext(false);
+
 class App extends PureComponent {
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log("App - getDerivedStateFromProps", nextProps, prevState);
+    return {...prevState};
+  }
 
   constructor(props) {
     super(props);
@@ -22,7 +29,8 @@ class App extends PureComponent {
       typeOfErrors: [],
       collections: [],
       showErrors : false,
-      toggleButtonClicked: 0
+      toggleButtonClicked: 0,
+      authenticated: false,
     }
     console.log('[App.js] constructor', props)
   }
@@ -55,6 +63,10 @@ class App extends PureComponent {
     const errors = [...this.state.errors];
     errors[errorIndex] = errorToUpdate;
     this.setState({errors: errors})
+  }
+
+  loginHandler = () => {
+    this.setState({authenticated: true});
   }
 
   toggleErrorsHandler = () => {
@@ -101,8 +113,9 @@ class App extends PureComponent {
           showErrors={this.state.showErrors}
           errors={this.state.errors}
           updated={this.updateErrorCounterHandler}
-          clicked={this.toggleErrorsHandler}/>
-        {exceptionsMetadata}
+          clicked={this.toggleErrorsHandler}
+          login={this.loginHandler}/>
+        <AuthContext.Provider value={this.state.authenticated}>{exceptionsMetadata}</AuthContext.Provider>
       </Aux>
     );
   }

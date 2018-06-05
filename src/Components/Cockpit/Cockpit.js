@@ -22,6 +22,7 @@ const cockpit = (props) => {
         <p className={classes.join(' ')}>Click the buttons to see metadata</p>
         <button className={buttonClass} onClick={props.clicked}>Show Erros</button>
         <button className={buttonClass} onClick={props.updated}>Console errors</button>
+        <button onClick={props.login}>Login</button>
     </Aux>
   )
 }

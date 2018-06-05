@@ -4,13 +4,15 @@ import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 class Errors extends PureComponent {
   constructor(props) {
-    super(props)
-    console.log('Errors: constructor')
+    super(props);
+    console.log('Errors: constructor');
+    this.lastPersonRef = React.createRef();
   }
   componentWillMount() {
     console.log('Errors: componentWillMount')
   }
   componentDidMount() {
+    this.lastPersonRef.current.focus();
     console.log('Errors: componentDidMount')
   }
   componentWillReceiveProps(updatedProps) {
@@ -33,6 +35,8 @@ class Errors extends PureComponent {
         <Error 
           type = {error.type}
           quantity = {error.quantity}
+          position = {index}
+          ref={this.lastPersonRef}
           click = {this.props.clicked.bind(this, index)}
           change = {(event) => {this.props.changed(event, error.id)}}/>
         </ErrorBoundary>
